@@ -2,7 +2,7 @@
 A bunch of syntax receivers for C# source generators.
 
 # Find types by specific conditions
-```
+```c#
 using SyntaxReceiverKit;
 
 namespace GeneratorExample
@@ -36,7 +36,7 @@ namespace GeneratorExample
 ```
 
 # Find all classes that are implements given interfaces
-```
+```c#
 [Generator]
 internal class InterfaceImplementGenerator : ISourceGenerator
 {
@@ -65,7 +65,7 @@ internal class InterfaceImplementGenerator : ISourceGenerator
 ```
 
 # Find types with given attributes
-```
+```c#
 [Generator]
 internal class AttributeStuffGenerator : ISourceGenerator
 {

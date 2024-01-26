@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
 
 namespace SyntaxReceiverKit
@@ -8,7 +9,8 @@ namespace SyntaxReceiverKit
 
     public abstract class CombinedReceiverBase<TKey, TValues> : SyntaxReceiver
     {
-        public Dictionary<TKey, List<TValues>> CollectedSymbols { get; protected set; }
+        protected Dictionary<TKey, List<TValues>> _collectedSymbols;
+        public ReadOnlyDictionary<TKey, List<TValues>> CollectedSymbols { get; protected set; }
     }
 
     public abstract class CombinedReceiver<T> : CombinedReceiverBase<string, T>
@@ -16,7 +18,7 @@ namespace SyntaxReceiverKit
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected void AddIfKeyExists(string key, T value)
         {
-            foreach(var pair in CollectedSymbols)
+            foreach(var pair in _collectedSymbols)
             {
                 if(pair.Key == key)
                     pair.Value.Add(value);
@@ -27,9 +29,10 @@ namespace SyntaxReceiverKit
         {
             if (typeNames == null) throw new ArgumentNullException(nameof(typeNames));
             if (typeNames.Length == 0) throw new ArgumentException($"{nameof(typeNames)} is empty.");
-            CollectedSymbols = new();
+            _collectedSymbols = new();
+            CollectedSymbols = new(_collectedSymbols);
             foreach (var i in typeNames)
-                CollectedSymbols.Add(i, new());
+                _collectedSymbols.Add(i, new());
         }
     }
 }

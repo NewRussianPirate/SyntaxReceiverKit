@@ -25,7 +25,7 @@ namespace SyntaxReceiverKit
         {
             if (interfaces == null) throw new ArgumentNullException(nameof(interfaces));
             if (interfaces.Length == 0) throw new ArgumentException($"{nameof(interfaces)} is empty.");
-            CollectedSymbols = new(new NamedSymbolStringComparer());
+            _collectedSymbols = new(new NamedSymbolStringComparer());
             _interfaces = interfaces;
         }
 
@@ -39,12 +39,12 @@ namespace SyntaxReceiverKit
                     {
                         try
                         {
-                            CollectedSymbols[i].Add(symbol);
+                            _collectedSymbols[i].Add(symbol);
                         }
                         catch(KeyNotFoundException)
                         {
                             var list = new List<INamedTypeSymbol>() { symbol };
-                            CollectedSymbols.Add(i, list);
+                            _collectedSymbols.Add(i, list);
                         }
                     }
                 }
