@@ -63,7 +63,7 @@ namespace SyntaxReceiverKit
         /// </summary>
         /// <param name="targets">Types which should be checked & collected.</param>
         /// <param name="attributes">An array with attributes names.</param>
-        public TypesWithAttributesReceiver(Targets targets, string[] attributes) : base(attributes)
+        public TypesWithAttributesReceiver(Targets targets, params string[] attributes) : base(attributes)
         {
             _targets = targets;
         }

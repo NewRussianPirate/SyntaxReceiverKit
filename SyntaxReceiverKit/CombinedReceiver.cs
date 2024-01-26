@@ -23,7 +23,7 @@ namespace SyntaxReceiverKit
             }
         }
 
-        public CombinedReceiver(string[] typeNames)
+        public CombinedReceiver(params string[] typeNames)
         {
             if (typeNames == null) throw new ArgumentNullException(nameof(typeNames));
             if (typeNames.Length == 0) throw new ArgumentException($"{nameof(typeNames)} is empty.");

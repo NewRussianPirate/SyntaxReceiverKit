@@ -14,7 +14,7 @@ namespace AutoNotify
     [AttributeUsage(AttributeTargets.Field)]
     public class AutoNotifyAttribute : Attribute {}
 }";
-        private TypesWithAttributesReceiver _receiver = new(TypesWithAttributesReceiver.Targets.Fields, new[] { "AutoNotify.AutoNotifyAttribute" } );
+        private TypesWithAttributesReceiver _receiver = new(TypesWithAttributesReceiver.Targets.Fields, "AutoNotify.AutoNotifyAttribute" );
 
         //Change first latter of given string to Upper without alloc a new string
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
